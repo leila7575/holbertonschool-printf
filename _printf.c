@@ -11,13 +11,13 @@
 
 int _printf(const char * const format, ...)
 {
-	va_list avar;
-	int totallen = 0;
+	va_list arg;
+	int lengh = 0;
 
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
-	var_star(avar, format);
+	var_star(arg, format);
 
 	while (*format)
 	{
@@ -26,15 +26,15 @@ int _printf(const char * const format, ...)
 			format ++;
 			if (*format == '\0')
 				break;
-			tolallen += _fuction_type(*format, avar);
+			lengh += _format_type(*format, arg);
 		}
 		else
 		{
 			_putchar(*format);
-			totallen++;
+			lengh++;
 		}
 		format++;
 	}
-	va_end(avar);
+	va_end(arg);
 	
-	return (totallen);
+	return (lengh);
