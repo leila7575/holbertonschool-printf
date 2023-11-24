@@ -42,6 +42,10 @@ int print_37(void);
 int print_c(va_list arg);
 int print_s(va_list val);
 int _putchar(char c);
+<<<<<<< HEAD
+int print_char(va_list arg)
+=======
 int _printf(const char *format, ...);
+>>>>>>> 11669da5b67f6df690b8489e51e8a193dd646ac6
 
 #endif
