@@ -27,7 +27,7 @@ int print_37(void);
 int print_c(va_list arg);
 int print_strings(va_list arg);
 int _putchar(char c);
-int print_char(va_list arg)
+int print_char(va_list arg);
 int _printf(const char *format, ...);
 
 #endif
