@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include"main.h"
 # include <stdarg.h>
 #include <string.h>
