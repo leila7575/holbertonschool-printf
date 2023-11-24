@@ -1,79 +1,41 @@
-#include "main.h"
+<<<<<<< HEAD
+#include"main.h"
+# include <stdarg.h>
+#include <string.h>
 
 /**
- * check_formats - Checks for specifiers
- * @spec: specifier
+ * _printf - is a function to print a string formated.
+ * @format: string of format
  *
- * Return: Pointer to function
+ * Return: the total number of the caracter print.
  */
-static int (*check_formats(const char *spec))(va_list)
+
+int _printf(const char * const format, ...)
 {
-	unsigned int i;
-	format_t mystruct[] = {
-		{"c", print_c},
-		{"s", print_strings},
-		{"i", print_i},
-		{"d", print_d},
-		{"%", print_37},
-		{NULL, NULL}
-	};
+	va_list avar;
+	int totallen = 0;
 
-	for (i = 0; mystruct[i].spec != NULL; i++)
-	{
-		if (*(mystruct[i].spec) == *format)
-		{
-			break;
-		}
-	}
-	return (mystruct[i].print);
-}
-
-/**
- * _printf - Function that prints with a format
- * @format: Format passed to printf
- *
- * Return: number of characters printed
- */
-int _printf(const char *format, ...)
-{
-	unsigned int i = 0, count = 0;
-	va_list mylist;
-	int (*f)(va_list);
-
-	if (format == NULL)
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
-	va_start(mylist, format);
+	var_star(avar, format);
 
-	while (format[i])
+	while (*format)
 	{
-		for (; format[i] != '%' && format[i]; i++)
+		if (*format == '%' )	
 		{
-			_putchar(format[i]);
-			count++;
+			format ++;
+			if (*format == '\0')
+				break;
+			tolallen += _fuction_type(*format, avar);
 		}
-		if (!format[i])
-			return (count);
-
-		f = check_formats(&format[i + 1]);
-		if (f != NULL)
-		{
-			count += f(mylist);
-			i += 2;
-			continue;
-		}
-		if (!format[i + 1])
-			return (-1);
-
-		_putchar(format[i]);
-		count++;
-		if (format[i + 1] == '%')
-			i += 2;
 		else
-			i++;
+		{
+			_putchar(*format);
+			totallen++;
+		}
+		format++;
 	}
-
-	va_end(mylist);
-	return (count);
-}
-
+	va_end(avar);
+	
+	return (totallen);
