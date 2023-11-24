@@ -7,9 +7,9 @@
 #include <unistd.h>
 
 /**
- * struct format - converter for printf
- * @ph: type char pointer of the specifier
- * @function: function for the conversion specifier
+ * struct format - structure with the format characters to be printed
+ * @spec: pointer to the type to be printed
+ * @print: function to print
  *
  */
 
