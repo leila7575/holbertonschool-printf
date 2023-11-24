@@ -1,47 +1,79 @@
 #include "main.h"
+
 /**
- * _printf - is a function that selects the correct function to print.
- * @format: identifier to look for.
- * Return: the length of the string.
+ * check_formats - Checks for specifiers
+ * @spec: specifier
+ *
+ * Return: Pointer to function
  */
-int _printf(const char * const format, ...)
+static int (*check_formats(const char *spec))(va_list)
 {
-	convert p[] = {
-		{"%s", print_s}, {"%c", print_c},
-		{"%%", print_37},
-		{"%i", print_i}, {"%d", print_d}, {"%r", print_revs},
-		{"%R", print_rot13}, {"%b", print_bin},
-		{"%u", print_unsigned},
-		{"%o", print_oct}, {"%x", print_hex}, {"%X", print_HEX},
-		{"%S", print_exc_string}, {"%p", print_pointer}
+	unsigned int i;
+	format_t mystruct[] = {
+		{"c", print_c},
+		{"s", print_strings},
+		{"i", print_i},
+		{"d", print_d},
+		{"%", print_37},
+		{NULL, NULL}
 	};
 
-	va_list args;
-	int i = 0, j, length = 0;
+	for (i = 0; mystruct[i].spec != NULL; i++)
+	{
+		if (*(mystruct[i].spec) == *format)
+		{
+			break;
+		}
+	}
+	return (mystruct[i].print);
+}
 
-	va_start(args, format);
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+/**
+ * _printf - Function that prints with a format
+ * @format: Format passed to printf
+ *
+ * Return: number of characters printed
+ */
+int _printf(const char *format, ...)
+{
+	unsigned int i = 0, count = 0;
+	va_list mylist;
+	int (*f)(va_list);
+
+	if (format == NULL)
 		return (-1);
 
-Here:
-	while (format[i] != '\0')
+	va_start(mylist, format);
+
+	while (format[i])
 	{
-		j = 13;
-		while (j >= 0)
+		for (; format[i] != '%' && format[i]; i++)
 		{
-			if (p[j].ph[0] == format[i] && p[j].ph[1] == format[i + 1])
-			{
-				length += p[j].function(args);
-				i = i + 2;
-				goto Here;
-			}
-			j--;
+			_putchar(format[i]);
+			count++;
 		}
+		if (!format[i])
+			return (count);
+
+		f = check_formats(&format[i + 1]);
+		if (f != NULL)
+		{
+			count += f(mylist);
+			i += 2;
+			continue;
+		}
+		if (!format[i + 1])
+			return (-1);
+
 		_putchar(format[i]);
-		length++;
-		i++;
+		count++;
+		if (format[i + 1] == '%')
+			i += 2;
+		else
+			i++;
 	}
-	va_end(args);
-	return (length);
+
+	va_end(mylist);
+	return (count);
 }
 
