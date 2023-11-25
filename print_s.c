@@ -27,9 +27,10 @@ int _strlen(char *s)
  */
 int print_strings(va_list arg)
 {
-	int i = 0
+	int i = 0;
 	int len
 	char *str
+
 	str = va_arg(arg, char*);
 
 	if (str == NULL)

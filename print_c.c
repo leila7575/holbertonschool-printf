@@ -5,7 +5,7 @@
  * @arg: arguments
  * Return: 1
  */
-int print_c(va_list arg);
+int print_c(va_list arg)
 {
 	char c;
 	c = va_arg(arg, int);

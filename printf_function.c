@@ -4,7 +4,7 @@
  * @spec: specifier
  * Return: pointer to function
  */
-int _format_type (char c,va_list arg)
+int _format_type(char c,va_list arg)
 {
 	unsigned int i;
 

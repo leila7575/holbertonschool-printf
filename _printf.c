@@ -1,6 +1,4 @@
 #include"main.h"
-# include <stdarg.h>
-#include <string.h>
 
 /**
  * _printf - is a function to print a string formated.
@@ -12,29 +10,30 @@
 int _printf(const char * const format, ...)
 {
 	va_list arg;
-	int lengh = 0;
+	int length = 0;
 
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+	if (!format || strlen(format) == 1 && format[0] == '\0'))
 		return (-1);
 
-	var_star(arg, format);
+	var_start(arg, format);
 
-	while (*format)
+	while (format)
 	{
-		if (*format == '%' )	
+		if (format == '%')	
 		{
-			format ++;
-			if (*format == '\0')
+			format++;
+			if (format == '\0')
 				break;
-			lengh += _format_type(*format, arg);
+			length += _format_type(format, arg);
 		}
 		else
 		{
-			_putchar(*format);
-			lengh++;
+			_putchar(format);
+			length++;
 		}
 		format++;
 	}
 	va_end(arg);
 	
-	return (lengh);
+	return (length);
+}
