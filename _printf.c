@@ -1,40 +1,46 @@
-#include"main.h"
-# include <stdarg.h>
-#include <string.h>
-
+#include "main.h"
 /**
- * _printf - is a function to print a string formated.
- * @format: string of format
- *
- * Return: the total number of the caracter print.
+ * _printf - is a function that selects the correct function to print.
+ * @format: identifier to look for.
+ * Return: the length of the string.
  */
-
 int _printf(const char * const format, ...)
 {
-	va_list arg;
-	int lengh = 0;
+	convert p[] = {
+		{"%s", print_s}, {"%c", print_c},
+		{"%%", print_37},
+		{"%i", print_i}, {"%d", print_d}, {"%r", print_revs},
+		{"%R", print_rot13}, {"%b", print_bin},
+		{"%u", print_unsigned},
+		{"%o", print_oct}, {"%x", print_hex}, {"%X", print_HEX},
+		{"%S", print_exc_string}, {"%p", print_pointer}
+	};
 
+	va_list args;
+	int i = 0, j, length = 0;
+
+	va_start(args, format);
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
-	var_star(arg, format);
-
-	while (*format)
+Here:
+	while (format[i] != '\0')
 	{
-		if (*format == '%' )	
+		j = 13;
+		while (j >= 0)
 		{
-			format ++;
-			if (*format == '\0')
-				break;
-			lengh += _format_type(*format, arg);
+			if (p[j].ph[0] == format[i] && p[j].ph[1] == format[i + 1])
+			{
+				length += p[j].function(args);
+				i = i + 2;
+				goto Here;
+			}
+			j--;
 		}
-		else
-		{
-			_putchar(*format);
-			lengh++;
-		}
-		format++;
+		_putchar(format[i]);
+		length++;
+		i++;
 	}
-	va_end(arg);
-	
-	return (lengh);
+	va_end(args);
+	return (length);
+}
