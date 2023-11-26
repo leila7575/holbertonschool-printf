@@ -1,5 +1,5 @@
-#include "main.h"
-
+#include "chemin/vers/main.h"
+i
 /**
  * _putchar - writes the character c to stdout
  * @c: The character to print
