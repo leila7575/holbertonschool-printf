@@ -4,20 +4,17 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <stdio.h>
+#include <string.h>
+#include <stddef.h>
+#include <limits.h>
 
-int _strlen(const char *);
-int print(char *);
 
-int _printf(const char *, ...);
-
-int handler(const char *, va_list);
-int percent_handler(const char *, va_list, int *);
-
-int print_string(va_list);
-int print_char(va_list);
-int print_integer(va_list);
-int _putchar(char);
-int buffer(char);
+int _printf(const char *format, ...);
+int _print_percent(va_list list);
+int _print_string(va_list list);
+int _print_char(va_list list);
+int _putchar(char c);
 
 /**
  * struct _format - Typedef struct
@@ -25,11 +22,11 @@ int buffer(char);
  * @type: Format
  * @f: The function associated
  **/
-typedef struct _format
+typedef struct type_print
 {
-	char type;
+	char *type;
 	int (*f)(va_list);
-} format;
+} type_print;
 
 
 #endif
