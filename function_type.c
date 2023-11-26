@@ -45,7 +45,11 @@ int percent_handler(const char *str, va_list list, int *i)
 	int size, j, number_formats;
 	format formats[] = {
 		{'s', print_string}, {'c', print_char},
+<<<<<<< HEAD
 		{'d', print_integer}, {'i', print_integer}
+=======
+		{'d', print_integer}, {'i', print_integer},
+>>>>>>> 295bcc573b98e73776daaabaa95f00319b89527c
 	};
 
 	*i = *i + 1;
