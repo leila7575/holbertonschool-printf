@@ -1,36 +1,20 @@
 #include "main.h"
 
-/
- 
-_print_arg_string - check the code
-@avar: avar
-Return: Always good function or null.
-*/
-int _print_arg_string(va_list avar)
-{
-        char s = va_arg(avar, char);
+/**
+ * print_string - Print string
+ * @list: list.
+ *
+ * Return: String length.
+ */
 
-        return (_print_string(s));
+int print_string(va_list list)
+{
+	char *p;
+	int p_len;
+
+	p = va_arg(list, char*);
+	p_len = print((p != NULL) ? p : "(null)");
+
+	return (p_len);
 }
 
-
-/
- 
-_print_string - check the code
-@s: s
-Return: Always good function or null.
-*/
-int _print_string(char *s)
-{
-        int i = 0;
-
-        if (!s)
-                return (_print_string("(null)"));
-
-        while (s[i])
-        {
-                _putchar(s[i]);
-                i++;
-        }
-        return (i);
-}
