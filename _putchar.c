@@ -1,4 +1,4 @@
-#include "MAIN.H"
+#include "main.h"
 #include <unistd.h> /* Ajout de l'inclusion du fichier d'en-tête pour 'write' */
 
 /**
