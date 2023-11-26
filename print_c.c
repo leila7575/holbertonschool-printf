@@ -1,16 +1,17 @@
+#include <unistd.h>
 #include "main.h"
 
 /**
- *  * print_c - prints a character.
- *   * @val: arguments.
- *    * Return: integer.
- *     */
-int print_c(va_list val)
+ 
+_print_char - check the code
+@avar: variadic argument
+Return: 1 character
+*/
+int _print_char(va_list avar)
 {
-	char s;
+        char c;
 
-	s = va_arg(val, int);
-	_putchar(s);
-	return (1);
+        c = va_arg(avar, int);
+        _putchar(c);
+        return (1);
 }
-
