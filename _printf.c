@@ -8,7 +8,11 @@
 
 int _printf(const char *format, ...)
 {
-    int res = 0, i = 0, j = 0, count = 0;
+	int i = 0;
+	int  j = 0;
+	int count = 0;
+
+	va_list arg;
 
     type_print storage[] = {
         {'s', _print_string},
@@ -19,7 +23,7 @@ int _printf(const char *format, ...)
 
     if (!format || (format[0] == '%' && format[1] == '\0'))
         return (-1);
-    va_list arg;
+
     va_start(arg, format);
 
     for (i = 0; format[i] != '\0' && format != NULL; i++)

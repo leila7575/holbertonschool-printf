@@ -24,7 +24,7 @@ int _putchar(char c);
  **/
 typedef struct type_print
 {
-	char *type;
+	char type;
 	int (*f)(va_list);
 } type_print;
 
