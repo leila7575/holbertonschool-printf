@@ -1,0 +1,45 @@
+.\"_printf manpage"
+.TH _printf man 3 "27/11/2023" "1.0" "_printf manpage"
+
+.SH NAME
+       
+       _printf - format and print data
+
+.SH SYNOPSIS
+       
+       #include "main.h"
+
+       int _printf(const char *format, ...);
+
+.SH DESCRIPTION
+       
+The _printf function  is designed to format and print data to the standard output.
+The format string can contain conversion specifiers, which begin with a '%' character, followed by optional flags, field width, precision, and length modifier. The following conversion specifiers are available:
+
+.IP -c - Prints a character.
+.IP -s -  Prints a string.
+.IP -d -i - Print an integer.
+
+.SH EXAMPLES
+
+.PP
+_printf("character:%c\n", 'A');
+.PP
+Outpout: character: A
+.PP
+_printf("string:%s\n","Hello world");
+.PP
+Outpout: string: Hello world
+.PP
+_printf("percent:%%\n");
+.PP
+Outpout: percent: %
+.PP
+_printf("integer:%i\n", '8');
+.PP
+Outpout: integer: 8
+
+.SH RETURN VALUE
+
+Upon successful execution, _printf returns the number of characters printed, or returns -1 on error.
+
