@@ -137,3 +137,7 @@ The output after compiling the program will be:
     Negative:[-762534]
     Len:[12]
     Len:[12]
+### Flowchart
+
+
+![flowchart_page-0001](https://github.com/leila7575/holbertonschool-printf/assets/148260175/10088d52-f799-4d3d-85a1-7d4ce1827bec)
